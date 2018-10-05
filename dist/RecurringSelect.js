@@ -4,7 +4,7 @@ var TimePicker = require('react-time-picker');
 var DatePicker = require('react-datepicker');
 var RuleSummary = require("./RuleSummary.js");
 var moment = require('moment');
-var Tabs = require('react-simpletabs');
+var RTabs = require('react-tabs');
 
 var RecurringSelect = React.createClass({displayName: "RecurringSelect",
   getInitialState: function() {
@@ -103,23 +103,29 @@ var RecurringSelect = React.createClass({displayName: "RecurringSelect",
   render: function() {
     return (
       React.createElement("div", {className: "recurring-select"}, 
-        React.createElement(Tabs, null, 
-          React.createElement(Tabs.Panel, {title: "Recurrence Rule"}, 
+        React.createElement(RTabs.Tabs, null, 
+          React.createElement(RTabs.TabList, null,
+            React.createElement(RTabs.Tab, null, "Recurrence Rule"),
+            React.createElement(RTabs.Tab, null, "Occurence Time"),
+            React.createElement(RTabs.Tab, null, "Recurring Until")
+          )
+          React.createElement(RTabs.TabPanel, null,
             React.createElement(RulePicker, {
               rule: this.state.rule, 
               interval: this.state.interval, 
               validations: this.state.validations, 
               onRuleChange: this.handleRuleChange, 
               onIntervalChange: this.handleIntervalChange, 
-              onValidationsChange: this.handleValidationsChange})
+              onValidationsChange: this.handleValidationsChange}
+            )
           ), 
-          React.createElement(Tabs.Panel, {title: "Occurence Time"}, 
+          React.createElement(RTabs.TabPanel, null, 
             React.createElement(TimePicker, {value: this.state.startTime, onChange: this.handleTimeChange})
           ), 
-          React.createElement(Tabs.Panel, {title: "Recurring Until"}, 
+          React.createElement(RTabs.TabPanel, null, 
             React.createElement(DatePicker, {className: 'date-picker', minDate: moment().format("YYYY-MM-DD"), date: this.state.until, onChange: this.handleEndDateChange})
           )
-        ), 
+        ),
         React.createElement("hr", null), 
         React.createElement(RuleSummary, {fields: this.state}), 
         React.createElement("button", {className: "btn save", onClick: this.handleSave}, "Save")
