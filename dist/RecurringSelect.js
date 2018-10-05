@@ -1,6 +1,5 @@
 var React = require('react');
 var RulePicker = require('./RulePicker.js');
-var TimePicker = require('react-time-picker');
 var DatePicker = require('react-datepicker');
 var RuleSummary = require("./RuleSummary.js");
 var moment = require('moment');
@@ -106,7 +105,6 @@ var RecurringSelect = React.createClass({displayName: "RecurringSelect",
         React.createElement(RTabs.Tabs, null, 
           React.createElement(RTabs.TabList, null,
             React.createElement(RTabs.Tab, null, "Recurrence Rule"),
-            React.createElement(RTabs.Tab, null, "Occurence Time"),
             React.createElement(RTabs.Tab, null, "Recurring Until")
           ),
           React.createElement(RTabs.TabPanel, null,
@@ -118,9 +116,6 @@ var RecurringSelect = React.createClass({displayName: "RecurringSelect",
               onIntervalChange: this.handleIntervalChange, 
               onValidationsChange: this.handleValidationsChange}
             )
-          ), 
-          React.createElement(RTabs.TabPanel, null, 
-            React.createElement(TimePicker, {value: this.state.startTime, onChange: this.handleTimeChange})
           ), 
           React.createElement(RTabs.TabPanel, null, 
             React.createElement(DatePicker, {
