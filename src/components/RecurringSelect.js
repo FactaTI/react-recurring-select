@@ -1,7 +1,7 @@
 var React = require('react');
 var RulePicker = require('./RulePicker.js');
 var TimePicker = require('react-time-picker');
-var DatePicker = require('react-date-picker');
+var DatePicker = require('react-datepicker');
 var RuleSummary = require("./RuleSummary.js");
 var moment = require('moment');
 var Tabs = require('react-simpletabs');
@@ -117,7 +117,12 @@ var RecurringSelect = React.createClass({
             <TimePicker value={this.state.startTime} onChange={this.handleTimeChange} />
           </Tabs.Panel>
           <Tabs.Panel title="Recurring Until">
-            <DatePicker minDate={moment().format("YYYY-MM-DD")} date={this.state.until} onChange={this.handleEndDateChange} />
+            <DatePicker
+              className="date-picker"
+              minDate={moment().format("YYYY-MM-DD")}
+              date={this.state.until}
+              onChange={this.handleEndDateChange}
+            />
           </Tabs.Panel>
         </Tabs>
         <hr></hr>
