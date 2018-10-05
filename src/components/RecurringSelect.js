@@ -4,7 +4,7 @@ var TimePicker = require('react-time-picker');
 var DatePicker = require('react-datepicker');
 var RuleSummary = require("./RuleSummary.js");
 var moment = require('moment');
-var Tabs = require('react-simpletabs');
+var RTabs = require('react-tabs');
 
 var RecurringSelect = React.createClass({
   getInitialState: function() {
@@ -103,8 +103,14 @@ var RecurringSelect = React.createClass({
   render: function() {
     return (
       <div className="recurring-select">
-        <Tabs>
-          <Tabs.Panel title="Recurrence Rule">
+        <RTabs.Tabs>
+          <RTabs.TabList>
+            <RTabs.Tab>Recurrence Rule</RTabs.Tab>
+            <RTabs.Tab>Occurrence Time</RTabs.Tab>
+            <RTabs.Tab>Occurring Until</RTabs.Tab>
+          </RTabs.TabList>
+
+          <RTabs.TabPanel>
             <RulePicker
               rule={this.state.rule}
               interval={this.state.interval}
@@ -112,19 +118,19 @@ var RecurringSelect = React.createClass({
               onRuleChange={this.handleRuleChange}
               onIntervalChange={this.handleIntervalChange}
               onValidationsChange={this.handleValidationsChange} />
-          </Tabs.Panel>
-          <Tabs.Panel title="Occurence Time">
+          </RTabs.TabPanel>
+          <RTabs.TabPanel>
             <TimePicker value={this.state.startTime} onChange={this.handleTimeChange} />
-          </Tabs.Panel>
-          <Tabs.Panel title="Recurring Until">
+          </RTabs.TabPanel>
+          <RTabs.TabPanel>
             <DatePicker
               className="date-picker"
               minDate={moment()}
               date={this.state.until}
               onChange={this.handleEndDateChange}
             />
-          </Tabs.Panel>
-        </Tabs>
+          </RTabs.TabPanel>
+        </RTabs.Tabs>
         <hr></hr>
         <RuleSummary fields={this.state} />
         <button className="btn save" onClick={this.handleSave}>Save</button>
