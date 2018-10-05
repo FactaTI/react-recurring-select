@@ -1,12 +1,14 @@
 {
   "name": "react-recurring-select",
   "version": "1.0.7",
-  "main": "./dist/RecurringSelect.js",
+  "main": "./dist/bundle.js",
   "description": "React component which makes creating ice_cube recurrence schedules easy",
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
-    "transform": "jsx src/components dist"
+    "webpack": "rm -rf dist && webpack",
+    "build": "npm run webpack",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -62,6 +64,6 @@
     "core-js": "^2.0.0",
     "node-sass": "^4.9.3",
     "promise": "^7.1.1",
-    "sass-loader": "^7.1.0"
+    "sass-loader": ">=4.0.0 <5.0"
   }
 }
