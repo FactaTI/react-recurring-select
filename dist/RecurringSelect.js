@@ -108,7 +108,7 @@ var RecurringSelect = React.createClass({displayName: "RecurringSelect",
             React.createElement(RTabs.Tab, null, "Recurrence Rule"),
             React.createElement(RTabs.Tab, null, "Occurence Time"),
             React.createElement(RTabs.Tab, null, "Recurring Until")
-          )
+          ),
           React.createElement(RTabs.TabPanel, null,
             React.createElement(RulePicker, {
               rule: this.state.rule, 
