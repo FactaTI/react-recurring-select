@@ -123,7 +123,12 @@ var RecurringSelect = React.createClass({displayName: "RecurringSelect",
             React.createElement(TimePicker, {value: this.state.startTime, onChange: this.handleTimeChange})
           ), 
           React.createElement(RTabs.TabPanel, null, 
-            React.createElement(DatePicker, {className: 'date-picker', minDate: moment().format("YYYY-MM-DD"), date: this.state.until, onChange: this.handleEndDateChange})
+            React.createElement(DatePicker, {
+              className: 'date-picker',
+              minDate: moment(),
+              date: this.state.until,
+              onChange: this.handleEndDateChange}
+            )
           )
         ),
         React.createElement("hr", null), 

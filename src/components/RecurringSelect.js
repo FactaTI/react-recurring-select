@@ -119,7 +119,7 @@ var RecurringSelect = React.createClass({
           <Tabs.Panel title="Recurring Until">
             <DatePicker
               className="date-picker"
-              minDate={moment().format("YYYY-MM-DD")}
+              minDate={moment()}
               date={this.state.until}
               onChange={this.handleEndDateChange}
             />
