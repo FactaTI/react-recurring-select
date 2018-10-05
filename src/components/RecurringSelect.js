@@ -1,6 +1,5 @@
 var React = require('react');
 var RulePicker = require('./RulePicker.js');
-var TimePicker = require('react-time-picker');
 var DatePicker = require('react-datepicker');
 var RuleSummary = require("./RuleSummary.js");
 var moment = require('moment');
@@ -13,7 +12,6 @@ var RecurringSelect = React.createClass({
       interval: 1,
       validations: null,
       until: moment().format('YYYY-MM-DD'),
-      startTime: "10:00 AM"
     });
   },
   handleRuleChange: function(e) {
@@ -54,18 +52,10 @@ var RecurringSelect = React.createClass({
       until: date
     });
   },
-  handleTimeChange: function(time) {
-    this.setState({
-      startTime: time
-    });
-  },
   handleSave: function(e) {
     var hash = this.state;
     console.log(hash.validations);
     var iceCubeHash = {};
-    var start = moment(hash.startTime, "hh:mm a A");
-    var minute = start.minute();
-    var hour = start.hour();
     var rule_type;
     switch (hash.rule) {
       case 'daily':
@@ -91,8 +81,6 @@ var RecurringSelect = React.createClass({
     } else if (rule_type == "IceCube::MonthlyRule") {
       newValidations["day_of_week"] = validations;
     }
-    newValidations["hour_of_day"] = hour;
-    newValidations["minute_of_hour"] = minute;
     var until = hash.until;
     iceCubeHash["rule_type"] = rule_type;
     iceCubeHash["interval"] = interval;
@@ -118,9 +106,6 @@ var RecurringSelect = React.createClass({
               onRuleChange={this.handleRuleChange}
               onIntervalChange={this.handleIntervalChange}
               onValidationsChange={this.handleValidationsChange} />
-          </RTabs.TabPanel>
-          <RTabs.TabPanel>
-            <TimePicker value={this.state.startTime} onChange={this.handleTimeChange} />
           </RTabs.TabPanel>
           <RTabs.TabPanel>
             <DatePicker

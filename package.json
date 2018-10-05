@@ -52,10 +52,8 @@
   "dependencies": {
     "core-js": "^2.0.0",
     "e": "0.0.4",
-    "input-moment": "0.0.6",
     "node-sass": "^3.4.2",
     "promise": "^7.1.1",
-    "react-time-picker": "^1.1.0",
     "sass-loader": "^3.1.2"
   }
 }
